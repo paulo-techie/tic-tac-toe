@@ -41,6 +41,8 @@ class Tictactoe
  
     def action 
     if @turn.even? 
+      @check = @turn
+      while @check == @turn
       puts "please #{@players[1]} enter a number between 1-9"
       @move = gets.chomp
       if @used.include?(@move)  
@@ -52,7 +54,10 @@ class Tictactoe
         @p2_move.push(@move.to_i)
         @turn += 1
       end
+    end
       else
+      @check = @turn
+      while @check == @turn
       puts "please #{@players[0]} enter a number between 1-9"
       @move = gets.chomp
       if @used.include?(@move)  
@@ -65,4 +70,6 @@ class Tictactoe
         @turn += 1
       end
     end
+    end
+  end
 end
