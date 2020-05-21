@@ -45,7 +45,7 @@ class Tictactoe
       while @check == @turn
       puts "please #{@players[1]} enter a number between 1-9"
       @move = gets.chomp
-      if @used.include?(@move)  
+      if @used.include?(@move.to_i)  
         puts "that spot is already taken"
       elsif (@move.respond_to?(:to_i) == false) || @move.to_i > 9 || @move.to_i < 1 
         puts "thats and invalid answer"
@@ -53,6 +53,7 @@ class Tictactoe
         @used.push(@move.to_i)
         @p2_move.push(@move.to_i)
         @turn += 1
+        @board[@move.to_i] =  "O"
       end
     end
       else
@@ -60,7 +61,7 @@ class Tictactoe
       while @check == @turn
       puts "please #{@players[0]} enter a number between 1-9"
       @move = gets.chomp
-      if @used.include?(@move)  
+      if @used.include?(@move.to_i)  
         puts "that spot is already taken"
       elsif (@move.respond_to?(:to_i) == false) || @move.to_i > 9 || @move.to_i < 1 
         puts "thats and invalid answer"
@@ -68,8 +69,16 @@ class Tictactoe
         @used.push(@move.to_i)
         @p1_move.push(@move.to_i)
         @turn += 1
+        @board[@move.to_i] =  "X"
       end
     end
     end
   end
 end
+
+game = Tictactoe.new
+game.start
+game.show_board 
+game.action
+game.action
+game.show_board 
