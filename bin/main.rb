@@ -1,10 +1,8 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-require_relative '../lib/player'
-
 class Tictactoe
-  attr_accessor :board, :players, :turn, :p1_move, :p2_move
+  attr_reader :players, :board, :turn, :p1_move, :p2_move
 
   def initialize
     @board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
@@ -14,6 +12,9 @@ class Tictactoe
     @p2_move = []
     @move = ""
     @used = []
+    $win = false
+    $draw = false
+    @condition = [[1, 1, 1], [1, 4, 7], [1, 5, 9], [2, 5, 8], [3, 5, 7], [3, 6, 9], [4, 5, 6], [7, 8, 9]]
   end
 
   def start
@@ -53,7 +54,7 @@ class Tictactoe
         @used.push(@move.to_i)
         @p2_move.push(@move.to_i)
         @turn += 1
-        @board[@move.to_i] =  "O"
+        @board[@move.to_i - 1] =  "O"
       end
     end
       else
@@ -69,16 +70,30 @@ class Tictactoe
         @used.push(@move.to_i)
         @p1_move.push(@move.to_i)
         @turn += 1
-        @board[@move.to_i] =  "X"
+        @board[@move.to_i - 1] =  "X"
       end
     end
     end
   end
+  def look
+    if @condition.include?(@p1_move.sort)
+      puts "player 1 is the winner"
+      $win = true
+    elsif @condition.include?(@p2_move.sort)
+      puts "player 2 is the winner"
+      $win = true  
+    elsif @turn > 9
+      puts "this is a Draw"
+      $draw = true
+    end  
+  end    
 end
 
-game = Tictactoe.new
-game.start
-game.show_board 
-game.action
-game.action
-game.show_board 
+party = Tictactoe.new
+party.start
+party.show_board 
+while $win == false && $draw == false
+party.action
+party.show_board
+party.look
+end 
