@@ -83,7 +83,7 @@ class Tictactoe
       puts "player 2 is the winner"
       $win = true  
     elsif @turn > 9
-      puts "this is a Draw"
+      puts "this is a nice Draw"
       $draw = true
     end  
   end    
