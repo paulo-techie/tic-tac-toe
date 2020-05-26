@@ -93,7 +93,7 @@ party = Tictactoe.new
 party.start
 party.show_board 
 while $win == false && $draw == false
-party.action
-party.show_board
-party.look
+  party.action
+  party.show_board
+  party.look
 end 
