@@ -19,12 +19,12 @@ class Game < Tictactoe
   def show_board
     puts '************************************************************'
     puts '                         ___________                                     '
-    puts '                        |           |                                     '  
-    puts '                        | #{@board[0]} | #{@board[1]} | #{@board[2]} |         '
+    puts '                        |           |                                     '
+    puts "                        | #{@board[0]} | #{@board[1]} | #{@board[2]} |         "
     puts '                        | --------- |                          '
-    puts '                        | #{@board[3]} | #{@board[4]} | #{@board[5]} |         '
+    puts "                        | #{@board[3]} | #{@board[4]} | #{@board[5]} |         "
     puts '                        | --------- |                         '
-    puts '                        | #{@board[6]} | #{@board[7]} | #{@board[8]} |         '
+    puts "                        | #{@board[6]} | #{@board[7]} | #{@board[8]} |         "
     puts '                        |___________|                                     '
     puts ''
     puts '************************************************************'
@@ -32,9 +32,9 @@ class Game < Tictactoe
 
   def player_turn
     if @turn.even? 
-    puts 'this is #{@players[1]} turn'
+      puts "this is #{@players[1]} turn"
     else
-    puts 'this is #{@players[0]} turn'
+      puts "this is #{@players[0]} turn"
     end
   end
  
@@ -43,7 +43,7 @@ class Game < Tictactoe
       @check = @turn
       while @check == @turn
         puts '************************************************************'
-        puts '*     please #{@players[1]} enter a number between 1-9     *'
+        puts "*     please #{@players[1]} enter a number between 1-9     *"
         puts '************************************************************'
       @move = gets.chomp
       if @used.include?(@move.to_i)  
@@ -54,29 +54,29 @@ class Game < Tictactoe
         @used.push(@move.to_i)
         @p2_move.push(@move.to_i)
         @turn += 1
-        @board[@move.to_i - 1] =  'O'
+        @board[@move.to_i - 1] = 'O'
       end
     end
       else
       @check = @turn
       while @check == @turn
         puts '************************************************************'
-        puts '*     please #{@players[0]} enter a number between 1-9     *'
+        puts "*     please #{@players[0]} enter a number between 1-9     *"
         puts '************************************************************'
       @move = gets.chomp
-      if @used.include?(@move.to_i)
-        puts '************************************************************'
-        puts '*               that spot is already taken                 *'
-        puts '************************************************************'
-      elsif (@move.respond_to?(:to_i) == false) || @move.to_i > 9 || @move.to_i < 1
-        puts '************************************************************'
-        puts '*                thats and invalid answer                  *'
-        puts '************************************************************'  
-      else
+        if @used.include?(@move.to_i)
+          puts '************************************************************'
+          puts '*               that spot is already taken                 *'
+          puts '************************************************************'
+        elsif (@move.respond_to?(:to_i) == false) || @move.to_i > 9 || @move.to_i < 1
+          puts '************************************************************'
+          puts '*                thats and invalid answer                  *'
+          puts '************************************************************'
+        else
         @used.push(@move.to_i)
         @p1_move.push(@move.to_i)
         @turn += 1
-        @board[@move.to_i - 1] =  'X'
+        @board[@move.to_i - 1] = 'X'
       end
     end
     end
@@ -85,17 +85,17 @@ class Game < Tictactoe
     if @win1 == true
       puts '************************************************************'
       puts '*                player 1 is the winner                    *'
-      puts '************************************************************' 
+      puts '************************************************************'
     elsif @win2 == true
       puts '************************************************************'
       puts '*                player 2 is the winner                    *'
-      puts '************************************************************'  
-    elsif $draw == true
+      puts '************************************************************'
+    elsif draw == true
       puts '************************************************************'
       puts '*                   this is a nice Draw                    *'
-      puts '************************************************************' 
+      puts '************************************************************'
     end  
-  end  
+  end
 end
 
 party = Game.new
