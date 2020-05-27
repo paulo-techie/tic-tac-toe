@@ -2,7 +2,7 @@
 
 > Tic-tac-toe is a Ruby project to demonstrate OOP design using Ruby by developing a playable tic-tac-toe game.
 
-![screenshot](./app_screenshot.png)
+![screenshot](./how_to_play.png)
 
 
 ## Built With
@@ -18,7 +18,7 @@ Tic-tac-toe, or Xs and Os, is a game for two players who take turns marking the 
 
 The following example game is won by the first player, X:
 
-![screenshot](./how_to_play.png)
+![screenshot](./app_screenshot.png)
 
 
 To get a local copy up and running follow these simple example steps:
@@ -48,7 +48,7 @@ To get a local copy up and running follow these simple example steps:
 
 ### To play
 
-    Follow the instructions as per the images above.
+    Follow the instructions as directed by the game.
     
     Enjoy!
 
@@ -57,11 +57,11 @@ To get a local copy up and running follow these simple example steps:
 
 ## Authors
 
-👤 **Author1**
+👤 Ricardo
 
 - Github: [@ricardo123321](https://github.com/ricardo123321)
 
-👤 **Author2**
+👤 Paul Omondi
 
 - Github: [@paulo-techie](https://github.com/paulo-techie)
 
