@@ -24,7 +24,7 @@ class Tictactoe
       @win1 = true
       win = true
     elsif @condition.include?(@p2_move.sort)
-      @win  = true
+      @win = true
       win = true
     end
     if @turn > 9 

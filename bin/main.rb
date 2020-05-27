@@ -106,12 +106,13 @@ end
     else
       puts "thats not a valid answer, ill take that as a no"
       @repeat = false
+    end
+  end
 end
 
 party = Game.new
 party.start
 party.show_board 
-while @repeat == true
   while win == false && draw == false
     party.player_turn
     party.action
@@ -119,5 +120,4 @@ while @repeat == true
     party.check
     party.look
   end
-  party.question
 end
