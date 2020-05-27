@@ -18,11 +18,11 @@ class Tictactoe
     @answer = ''
   end
 
-  def self.wining
+  def wining
     @win == true
   end
 
-  def self.to_draw
+  def to_draw
     @draw == true
   end
 
