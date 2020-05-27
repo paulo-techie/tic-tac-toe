@@ -112,7 +112,7 @@ party = Game.new
 party.start
 party.show_board 
 while @repeat == true
-  while $win == false && $draw == false
+  while win == false && draw == false
     party.player_turn
     party.action
     party.show_board
