@@ -94,16 +94,29 @@ end
       puts "*                   this is a nice Draw                    *"
       puts "************************************************************" 
     end  
-  end    
+  end  
+  def question
+    puts "would you like to play again"
+    @answer = gets.chomp
+    if @answer = "y"
+      @repeat = true
+    elsif @answer == "n"
+      @repeat == false
+    else
+      puts "thats not a valid answer, ill take that as a no"
+      @repeat = false
 end
 
 party = Game.new
 party.start
 party.show_board 
+while @repeat == true
 while $win == false && $draw == false
   party.player_turn
   party.action
   party.show_board
   party.check
   party.look
-end 
+end
+  party.question
+end
