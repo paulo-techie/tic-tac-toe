@@ -31,7 +31,7 @@ To get a local copy up and running follow these simple example steps:
 
     # Windows
 
-    Download and rub [RubyInstaller](https://rubyinstaller.org/)
+    Download and run RubyInstaller @ https://rubyinstaller.org/
 
     # Mac/Linux
 
