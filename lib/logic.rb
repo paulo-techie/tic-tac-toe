@@ -19,11 +19,13 @@ class Tictactoe
   end
 
   def self.wining
-    @win == true 
+    @win == true
   end
+
   def self.to_draw
     @draw == true
   end
+
   def check
     if @condition.include?(@p1_move.sort)
       @win1 = true
