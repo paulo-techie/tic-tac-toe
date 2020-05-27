@@ -24,7 +24,7 @@ class Tictactoe
       @win = true
     end
     return unless @turn > 9
-    
+
     @draw = true
   end
 end
