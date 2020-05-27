@@ -1,42 +1,55 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-class Tictactoe
-  attr_reader :players, :board, :turn, :p1_move, :p2_move
+require_relative '../lib/logic.rb'
 
-  def initialize
-    @board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
-    @players = []
-    @turn = 1 
-    @p1_move = []
-    @p2_move = []
-    @move = ""
-    @used = []
-    $win = false
-    $draw = false
-    @condition = [[1, 2, 3], [1, 4, 7], [1, 5, 9], [2, 5, 8], [3, 5, 7], [3, 6, 9], [4, 5, 6], [7, 8, 9]]
-  end
+class Game < Tictactoe
 
   def start
-    puts "enter player 1 name"
-    @players.push(gets.chomp)
-    puts "enter player 2 name"
-    @players.push(gets.chomp)
+    puts '********************** TIC TAC TOE ***************************'
+    puts '************************************************************'
+    puts '                         ___________                                     '
+    puts '                        |           |                                     '
+    puts '                        | 1 | 2 | 3 |         '
+    puts '                        | --------- |                          '
+    puts '                        | 4 | 5 | 6 |         '
+    puts '                        | --------- |                         '
+    puts '                        | 7 | 8 | 9 |         '
+    puts '                        |___________|                                     '
+    puts ''
+    puts '************************************************************'
+    puts '* to play enter numbers (1-9) according to the board above *'
+    puts '************************************************************'
+    puts ''
+    puts '************************************************************'
+    puts '*                Please enter player 1 name                *'
+    puts '************************************************************'
+    @player1 = Player.new(gets.chomp)
+    puts '************************************************************'
+    puts '*                Please enter player 2 name                *'
+    puts '************************************************************'
+    @player2 = Player.new(gets.chomp)
   end
 
   def show_board
-    puts "#{@board[0]} | #{@board[1]} | #{@board[2]}"
-    puts "---------"
-    puts "#{@board[3]} | #{@board[4]} | #{@board[5]}"
-    puts "---------"
-    puts "#{@board[6]} | #{@board[7]} | #{@board[8]}"
+    puts '************************************************************'
+    puts '                         ___________                                     '
+    puts '                        |           |                                     '
+    puts "                        | #{@board[0]} | #{@board[1]} | #{@board[2]} |         "
+    puts '                        | --------- |                          '
+    puts "                        | #{@board[3]} | #{@board[4]} | #{@board[5]} |         "
+    puts '                        | --------- |                         '
+    puts "                        | #{@board[6]} | #{@board[7]} | #{@board[8]} |         "
+    puts '                        |___________|                                     '
+    puts ''
+    puts '************************************************************'
   end
 
   def player_turn
     if @turn.even? 
-    puts "this is #{@players[1]} turn"
+      puts "this is #{@player2.name} turn"
     else
-    puts "this is #{@players[0]} turn"
+      puts "this is #{@player1.name} turn"
     end
   end
  
@@ -44,56 +57,67 @@ class Tictactoe
     if @turn.even? 
       @check = @turn
       while @check == @turn
-      puts "please #{@players[1]} enter a number between 1-9"
+        puts "*     please #{@player2.name} enter a number between 1-9     *"
+        puts '************************************************************'
       @move = gets.chomp
       if @used.include?(@move.to_i)  
-        puts "that spot is already taken"
+        puts 'that spot is already taken'
       elsif (@move.respond_to?(:to_i) == false) || @move.to_i > 9 || @move.to_i < 1 
-        puts "thats and invalid answer"
+        puts 'thats an invalid answer'
       else
         @used.push(@move.to_i)
-        @p2_move.push(@move.to_i)
+        @player2.move << @move.to_i
         @turn += 1
-        @board[@move.to_i - 1] =  "O"
+        @board[@move.to_i - 1] = 'O'
       end
     end
       else
       @check = @turn
       while @check == @turn
-      puts "please #{@players[0]} enter a number between 1-9"
+        puts "*     please #{@player1.name} enter a number between 1-9     *"
+        puts '************************************************************'
       @move = gets.chomp
-      if @used.include?(@move.to_i)  
-        puts "that spot is already taken"
-      elsif (@move.respond_to?(:to_i) == false) || @move.to_i > 9 || @move.to_i < 1 
-        puts "thats and invalid answer"
-      else
+        if @used.include?(@move.to_i)
+          puts '************************************************************'
+          puts '*               that spot is already taken                 *'
+          puts '************************************************************'
+        elsif (@move.respond_to?(:to_i) == false) || @move.to_i > 9 || @move.to_i < 1
+          puts '************************************************************'
+          puts '*                thats and invalid answer                  *'
+          puts '************************************************************'
+        else
         @used.push(@move.to_i)
-        @p1_move.push(@move.to_i)
+        @player1.move << @move.to_i
         @turn += 1
-        @board[@move.to_i - 1] =  "X"
+        @board[@move.to_i - 1] = 'X'
       end
     end
     end
   end
   def look
-    if @condition.include?(@p1_move.sort)
-      puts "player 1 is the winner"
-      $win = true
-    elsif @condition.include?(@p2_move.sort)
-      puts "player 2 is the winner"
-      $win = true  
-    elsif @turn > 9
-      puts "this is a nice Draw"
-      $draw = true
+    if @win1 == true
+      puts '************************************************************'
+      puts "                #{@player1.name} is the winner                    "
+      puts '************************************************************'
+    elsif @draw == true
+      puts '************************************************************'
+      puts '*                this is a nice Draw                       *'
+      puts '************************************************************'
+    elsif @win2 == true
+      puts '************************************************************'
+      puts "                #{@player2.name} is the winner                    "
+      puts '************************************************************'
     end  
-  end    
+  end
 end
 
-party = Tictactoe.new
+party = Game.new
 party.start
 party.show_board 
-while $win == false && $draw == false
-party.action
-party.show_board
-party.look
-end 
+while party.win1 == false && party.draw ==false && party.win2 == false
+  party.player_turn
+  party.action
+  party.show_board
+  party.check
+  party.look
+end
