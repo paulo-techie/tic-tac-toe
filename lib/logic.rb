@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
-# frozen_string_literal: true
+
 require_relative './player.rb'
 class Tictactoe
-    attr_reader :players, :board, :turn, :p1_move, :p2_move, :win1, :win2 :answer
+    attr_reader :players, :board, :turn, :p1_move, :p2_move, :win1, :win2, :answer
   
     def initialize
       @board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]

@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
+
 require_relative '../lib/logic.rb'
 
 class Game < Tictactoe
@@ -111,12 +112,12 @@ party = Game.new
 party.start
 party.show_board 
 while @repeat == true
-while $win == false && $draw == false
-  party.player_turn
-  party.action
-  party.show_board
-  party.check
-  party.look
-end
+  while $win == false && $draw == false
+    party.player_turn
+    party.action
+    party.show_board
+    party.check
+    party.look
+  end
   party.question
 end
