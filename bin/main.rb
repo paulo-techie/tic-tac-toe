@@ -96,18 +96,6 @@ end
       puts "************************************************************" 
     end  
   end  
-  def question
-    puts "would you like to play again"
-    @answer = gets.chomp
-    if @answer = "y"
-      @repeat = true
-    elsif @answer == "n"
-      @repeat == false
-    else
-      puts "thats not a valid answer, ill take that as a no"
-      @repeat = false
-    end
-  end
 end
 
 party = Game.new
