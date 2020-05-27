@@ -1,6 +1,6 @@
 require_relative './player.rb'
 class Tictactoe
-  attr_reader :player1, :player2, :board, :turn, :p1_move, :p2_move, :win1, :win2, :answer
+  attr_reader :player1, :player2, :board, :turn, :p1_move, :p2_move, :win1, :win2, :draw, :answer
 
   def initialize
     @board = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
@@ -15,24 +15,16 @@ class Tictactoe
     @answer = ''
   end
 
-  def wining
-    @win == true
-  end
-
-  def to_draw
-    @draw == true
-  end
-
   def check
-    if @condition.include?(@player1.move)
+    if @condition.include?(@player1.move.sort!)
       @win1 = true
       @win = true
-    elsif @condition.include?(@player2.move)
+    elsif @condition.include?(@player2.move.sort!)
       @win2 = true
       @win = true
     end
     return unless @turn > 9
-
+    
     @draw = true
   end
 end

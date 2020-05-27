@@ -6,6 +6,21 @@ require_relative '../lib/logic.rb'
 class Game < Tictactoe
 
   def start
+    puts '********************** TIC TAC TOE ***************************'
+    puts '************************************************************'
+    puts '                         ___________                                     '
+    puts '                        |           |                                     '
+    puts "                        | 1 | 2 | 3 |         "
+    puts '                        | --------- |                          '
+    puts "                        | 4 | 5 | 6 |         "
+    puts '                        | --------- |                         '
+    puts "                        | 7 | 8 | 9 |         "
+    puts '                        |___________|                                     '
+    puts ''
+    puts '************************************************************'
+    puts '* to play enter numbers (1-9) according to the board above *'
+    puts '************************************************************'
+    puts ""
     puts '************************************************************'
     puts '*                Please enter player 1 name                *'
     puts '************************************************************'
@@ -32,9 +47,9 @@ class Game < Tictactoe
 
   def player_turn
     if @turn.even? 
-      puts "this is #{@player1.name} turn"
-    else
       puts "this is #{@player2.name} turn"
+    else
+      puts "this is #{@player1.name} turn"
     end
   end
  
@@ -42,7 +57,6 @@ class Game < Tictactoe
     if @turn.even? 
       @check = @turn
       while @check == @turn
-        puts '************************************************************'
         puts "*     please #{@player2.name} enter a number between 1-9     *"
         puts '************************************************************'
       @move = gets.chomp
@@ -60,7 +74,6 @@ class Game < Tictactoe
       else
       @check = @turn
       while @check == @turn
-        puts '************************************************************'
         puts "*     please #{@player1.name} enter a number between 1-9     *"
         puts '************************************************************'
       @move = gets.chomp
@@ -84,15 +97,15 @@ class Game < Tictactoe
   def look
     if @win1 == true
       puts '************************************************************'
-      puts '*                player 1 is the winner                    *'
-      puts '************************************************************'
-    elsif @win2 == true
-      puts '************************************************************'
-      puts '*                player 2 is the winner                    *'
+      puts "                #{@player1.name} is the winner                    "
       puts '************************************************************'
     elsif @draw == true
       puts '************************************************************'
-      puts '*                   this is a nice Draw                    *'
+      puts '*                this is a nice Draw                       *'
+      puts '************************************************************'
+    elsif @win2 == true
+      puts '************************************************************'
+      puts "                #{@player2.name} is the winner                    "
       puts '************************************************************'
     end  
   end
@@ -101,7 +114,7 @@ end
 party = Game.new
 party.start
 party.show_board 
-while party.wining == false && party.to_draw == false
+while party.win1 == false && party.draw ==false && party.win2 == false
   party.player_turn
   party.action
   party.show_board
