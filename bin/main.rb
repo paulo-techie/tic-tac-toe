@@ -9,11 +9,11 @@ class Game < Tictactoe
     puts '************************************************************'
     puts '*                Please enter player 1 name                *'
     puts '************************************************************'
-    @players.push(gets.chomp)
+    @player1 = Player.new(gets.chomp)
     puts '************************************************************'
     puts '*                Please enter player 2 name                *'
     puts '************************************************************'
-    @players.push(gets.chomp)
+    @player2 = Player.new(gets.chomp)
   end
 
   def show_board
@@ -32,9 +32,9 @@ class Game < Tictactoe
 
   def player_turn
     if @turn.even? 
-      puts "this is #{@players[1]} turn"
+      puts "this is #{@player1.name} turn"
     else
-      puts "this is #{@players[0]} turn"
+      puts "this is #{@player2.name} turn"
     end
   end
  
@@ -43,16 +43,16 @@ class Game < Tictactoe
       @check = @turn
       while @check == @turn
         puts '************************************************************'
-        puts "*     please #{@players[1]} enter a number between 1-9     *"
+        puts "*     please #{@player2.name} enter a number between 1-9     *"
         puts '************************************************************'
       @move = gets.chomp
       if @used.include?(@move.to_i)  
         puts 'that spot is already taken'
       elsif (@move.respond_to?(:to_i) == false) || @move.to_i > 9 || @move.to_i < 1 
-        puts 'thats and invalid answer'
+        puts 'thats an invalid answer'
       else
         @used.push(@move.to_i)
-        @p2_move.push(@move.to_i)
+        @player2.move << @move.to_i
         @turn += 1
         @board[@move.to_i - 1] = 'O'
       end
@@ -61,7 +61,7 @@ class Game < Tictactoe
       @check = @turn
       while @check == @turn
         puts '************************************************************'
-        puts "*     please #{@players[0]} enter a number between 1-9     *"
+        puts "*     please #{@player1.name} enter a number between 1-9     *"
         puts '************************************************************'
       @move = gets.chomp
         if @used.include?(@move.to_i)
@@ -74,7 +74,7 @@ class Game < Tictactoe
           puts '************************************************************'
         else
         @used.push(@move.to_i)
-        @p1_move.push(@move.to_i)
+        @player1.move << @move.to_i
         @turn += 1
         @board[@move.to_i - 1] = 'X'
       end

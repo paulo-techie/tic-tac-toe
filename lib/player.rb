@@ -1,6 +1,8 @@
 class Player
-  attr_reader :name
-  def self.initialize
-    @name = []
+  attr_accessor :name, :move
+  
+  def initialize (name, move=[])
+    @name = name
+    @move = move
   end
 end
