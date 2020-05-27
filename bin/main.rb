@@ -90,7 +90,7 @@ class Game < Tictactoe
       puts '************************************************************'
       puts '*                player 2 is the winner                    *'
       puts '************************************************************'
-    elsif draw == true
+    elsif @draw == true
       puts '************************************************************'
       puts '*                   this is a nice Draw                    *'
       puts '************************************************************'
@@ -101,7 +101,7 @@ end
 party = Game.new
 party.start
 party.show_board 
-while win == false && draw == false
+while party.wining == false && party.to_draw == false
   party.player_turn
   party.action
   party.show_board
