@@ -113,11 +113,10 @@ end
 party = Game.new
 party.start
 party.show_board 
-  while win == false && draw == false
-    party.player_turn
-    party.action
-    party.show_board
-    party.check
-    party.look
-  end
+while win == false && draw == false
+  party.player_turn
+  party.action
+  party.show_board
+  party.check
+  party.look
 end
