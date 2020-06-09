@@ -59,11 +59,11 @@ describe Game do
     # let(:turn1) {4}
     # let(:turn2) {5}
 
-    describe 'start' do
-        it 'should receive player names' do
-            expect(game.start).to be_a(Player)
-        end
-    end
+    # describe 'start' do
+    #     it 'should receive player names' do
+    #         expect(game.start).to be_a(Player)
+    #     end
+    # end
 
     describe 'show_board' do
         it 'print a string representing the board layout' do
@@ -71,10 +71,10 @@ describe Game do
         end
     end
 
-    describe 'player_turn' do
-        it 'return string showing the player whose turn it is' do
-            expect(game.player_turn).to be_instance_of(NilClass)
-        end
-    end
-    
+    # describe 'player_turn' do
+    #     it 'return string showing the player whose turn it is' do
+    #         expect(game.player_turn).to be_instance_of(NilClass)
+    #     end
+    # end
+     
 end
