@@ -3,6 +3,7 @@ require './lib/logic.rb'
 
 describe Tictactoe do
     let(:tictactoe) {Tictactoe.new}
+    let(:condition) {}
     
     describe 'initialize' do
         it 'initializes the board variables' do
@@ -29,5 +30,12 @@ describe Tictactoe do
             expect(tictactoe.answer).to eql('')
         end
     end
+
+    describe 'check' do
+        it 'checks if turn is greater than 9' do
+            expect(tictactoe.turn>9).to eql(false)
+        end
+    end
+
 
 end
