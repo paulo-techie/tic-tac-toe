@@ -94,6 +94,7 @@ class Game < Tictactoe
     end
     end
   end
+  
   def look
     if @win1 == true
       puts '************************************************************'
