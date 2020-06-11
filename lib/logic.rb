@@ -1,5 +1,5 @@
 require_relative './player.rb'
-class Tictactoe < Player
+class Tictactoe
   attr_reader :player1, :player2, :board, :turn, :p1_move, :p2_move, :win1, :win2, :draw, :answer, :used, :condition
 
   def initialize

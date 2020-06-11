@@ -114,25 +114,90 @@ describe Game do
         end
     end
 
-    describe 'look' do
+    describe 'check/look' do
         before(:each) do
             allow_message_expectations_on_nil
-            allow(subject).to receive(:win1) {true}
+        end
+
+        it 'display "doe is the winner" above in all 8 possible win scenarios' do
+            allow(subject.player2).to receive(:name) {'doe'}
+            allow(subject.player2).to receive(:move) {[1,2,3]}
+            expect(subject.check).to eq(nil)
+            expect(subject.look).to eq(nil)
+            allow(subject.player2).to receive(:move) {[4,5,6]}
+            expect(subject.check).to eq(nil)
+            expect(subject.look).to eq(nil)
+            allow(subject.player2).to receive(:move) {[7,8,9]}
+            expect(subject.check).to eq(nil)
+            expect(subject.look).to eq(nil)
+            allow(subject.player2).to receive(:move) {[1,5,9]}
+            expect(subject.check).to eq(nil)
+            expect(subject.look).to eq(nil)
+            allow(subject.player2).to receive(:move) {[3,5,7]}
+            expect(subject.check).to eq(nil)
+            expect(subject.look).to eq(nil)
+            allow(subject.player2).to receive(:move) {[1,2,7]}
+            expect(subject.check).to eq(nil)
+            expect(subject.look).to eq(nil)
+            allow(subject.player2).to receive(:move) {[2,5,8]}
+            expect(subject.check).to eq(nil)
+            expect(subject.look).to eq(nil)
+            allow(subject.player2).to receive(:move) {[3,6,9]}
+            expect(subject.check).to eq(nil)
+            expect(subject.look).to eq(nil)
+        end
+
+        it 'display "joe is the winner" above in all 8 possible win scenarios' do
+            allow(subject.player1).to receive(:name) {'joe'}
+            allow(subject.player1).to receive(:move) {[1,2,3]}
+            expect(subject.check).to eq(nil)
+            expect(subject.look).to eq(nil)
+            allow(subject.player1).to receive(:move) {[4,5,6]}
+            expect(subject.check).to eq(nil)
+            expect(subject.look).to eq(nil)
+            allow(subject.player1).to receive(:move) {[7,8,9]}
+            expect(subject.check).to eq(nil)
+            expect(subject.look).to eq(nil)
+            allow(subject.player1).to receive(:move) {[1,5,9]}
+            expect(subject.check).to eq(nil)
+            expect(subject.look).to eq(nil)
+            allow(subject.player1).to receive(:move) {[3,5,7]}
+            expect(subject.check).to eq(nil)
+            expect(subject.look).to eq(nil)
+            allow(subject.player1).to receive(:move) {[1,2,7]}
+            expect(subject.check).to eq(nil)
+            expect(subject.look).to eq(nil)
+            allow(subject.player1).to receive(:move) {[2,5,8]}
+            expect(subject.check).to eq(nil)
+            expect(subject.look).to eq(nil)
+        end
+
+        it 'dont display "doe is the winner" in non-win player2 scenarios' do
+            allow(subject.player2).to receive(:name) {'doe'}
+            allow(subject.player2).to receive(:move) {[1,2,8]}
+            expect(subject.check).to eq(nil)
+            expect(subject.look).to eq(nil)
+            allow(subject.player2).to receive(:move) {[4,5,7]}
+            expect(subject.check).to eq(nil)
+            expect(subject.look).to eq(nil)
+        end
+
+        it 'dont display "joe is the winner" in non-win player1 scenarios' do
+            allow(subject.player1).to receive(:name) {'joe'}
+            allow(subject.player1).to receive(:move) {[1,2,8]}
+            expect(subject.check).to eq(nil)
+            expect(subject.look).to eq(nil)
+            allow(subject.player1).to receive(:move) {[4,5,7]}
+            expect(subject.check).to eq(nil)
+            expect(subject.look).to eq(nil)
+        end
+
+        it 'check for a draw if turns exceed 9' do
             allow(subject).to receive(:draw) {true}
-            allow(subject).to receive(:win2) {true}    
+            allow(subject).to receive(:turn) {10}
+            expect(subject.look).to eq(nil)
         end
 
-        it 'displays if player 1 wins' do
-            expect(subject.look).to eq(puts "                joe is the winner                    ")
-        end
-
-        it 'displays if it is a draw' do
-            expect(subject.look).to eq(puts '*                this is a nice Draw                       *')
-        end
-
-        it 'displays if player 2 wins' do
-            expect(subject.look).to eq(puts "                doe is the winner                    ")
-        end
     end
 
 end
