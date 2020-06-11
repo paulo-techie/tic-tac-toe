@@ -94,7 +94,7 @@ class Game < Tictactoe
     end
     end
   end
-  
+
   def look
     if @win1 == true
       puts '************************************************************'
@@ -112,13 +112,13 @@ class Game < Tictactoe
   end
 end
 
-# party = Game.new
-# party.start
-# party.show_board 
-# while party.win1 == false && party.draw ==false && party.win2 == false
-#   party.player_turn
-#   party.action
-#   party.show_board
-#   party.check
-#   party.look
-# end
+party = Game.new
+party.start
+party.show_board
+while party.win1 == false && party.draw ==false && party.win2 == false
+  party.player_turn
+  party.action
+  party.show_board
+  party.check
+  party.look
+end
