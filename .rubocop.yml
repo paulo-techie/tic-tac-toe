@@ -3,6 +3,7 @@ AllCops:
     - "README.md"
     - "Guardfile"
     - "Rakefile"
+    - "./spec/spec_helper.rb"
 
   DisplayCopNames: true
 
@@ -17,6 +18,8 @@ Metrics/ClassLength:
 Metrics/BlockLength:
   ExcludedMethods: ['describe']
   Max: 30
+Metrics/PerceivedComplexity:
+  Max: 15
 
 
 Style/Documentation:
@@ -49,3 +52,4 @@ Style/HashTransformKeys:
   Enabled: false
 Style/HashTransformValues:
   Enabled: false
+
